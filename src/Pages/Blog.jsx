@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
 
 export default function Blog() {
     const [posts, setPosts] = useState([]);
@@ -10,11 +9,13 @@ export default function Blog() {
 
     async function fetchBlogData() {
         try {
-            const response = await fetch("https://www.googleapis.com/blogger/v3/blogs/2399953/posts?key=AIzaSyBcPBbS9tseCBUDVQHoFw69QYTHYr2LK7o");
+            const response = await fetch(
+                `https://www.googleapis.com/blogger/v3/blogs/2399953/posts?key=AIzaSyBcPBbS9tseCBUDVQHoFw69QYTHYr2LK7o`
+            );
             const data = await response.json();
 
             if (data.items) {
-                setPosts(data.items); // Update state with blog posts
+                setPosts(data.items);
             } else {
                 console.error("No posts found.");
             }
@@ -23,25 +24,46 @@ export default function Blog() {
         }
     }
 
+    function extractImageFromContent(content) {
+        const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+        return imgMatch ? imgMatch[1] : null;
+    }
+
     return (
-        <div>
-            <Navbar />
-            {posts.map(post => (
-                <div className="card mb-3" style={{ maxWidth: "540px" }} key={post.id}>
-                    <div className="row g-0">
-                        <div className="col-md-4">
-                            <img src={post.images ? post.images[0].url : ''} className="img-fluid rounded-start" alt="..." />
-                        </div>
-                        <div className="col-md-8">
-                            <div className="card-body">
+        <div className="container my-5">
+            <div className="row">
+                {posts.map(post => (
+                    <div className="col-md-3 mb-4" key={post.id}>
+                        <div className="card shadow-lg h-40 d-flex flex-column" style={{ minHeight: "400px" }}>
+                            {extractImageFromContent(post.content) && (
+                                <img
+                                    src={extractImageFromContent(post.content)}
+                                    className="card-img-top"
+                                    alt="Post"
+                                    style={{ height: "180px", objectFit: "cover" }}
+                                />
+                            )}
+                            <div className="card-body d-flex flex-column">
                                 <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text">{post.content}</p>
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <div
+                                    className="card-text flex-grow-1"
+                                    dangerouslySetInnerHTML={{
+                                        __html: post.content.substring(0, 100) + "...",
+                                    }}
+                                />
+                                <a
+                                    href={post.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary mt-auto"
+                                >
+                                    Read More
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }
