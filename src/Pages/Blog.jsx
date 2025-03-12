@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Banner from "../Components/Banner";
 
 export default function Blog() {
     const [posts, setPosts] = useState([]);
@@ -8,11 +9,14 @@ export default function Blog() {
     }, []);
 
     async function fetchBlogData() {
+        const blogApi = process.env.REACT_APP_BLOGGER_API_KEY;
+        console.log(blogApi)
         try {
             const response = await fetch(
-                `https://www.googleapis.com/blogger/v3/blogs/2399953/posts?key=AIzaSyBcPBbS9tseCBUDVQHoFw69QYTHYr2LK7o`
+                `https://www.googleapis.com/blogger/v3/blogs/6768487774851306134/posts?key=${blogApi}`
             );
             const data = await response.json();
+            console.log("blogData ", data)
 
             if (data.items) {
                 setPosts(data.items);
@@ -30,7 +34,10 @@ export default function Blog() {
     }
 
     return (
+        <>
+        <Banner/>
         <div className="container my-5">
+
             <div className="row">
                 {posts.map(post => (
                     <div className="col-md-3 mb-4" key={post.id}>
@@ -65,5 +72,6 @@ export default function Blog() {
                 ))}
             </div>
         </div>
+        </>
     );
 }

@@ -35,14 +35,14 @@ const HotelList = () => {
     const fetchHotels = async (countryCode) => {
         setLoading(true);
         setError(null);
-
+        const apiKey = process.env.REACT_APP_LITE_API_KEY;
         try {
             const response = await fetch(
                 `https://api.liteapi.travel/v3.0/data/hotels?countryCode=${countryCode}&limit=50`,
                 {
                     method: "GET",
                     headers: {
-                        "X-API-Key": "sand_16f8ef95-963b-41a6-856d-4b22ccc0cd36",
+                        "X-API-Key":apiKey,
                         "Content-Type": "application/json",
                     },
                 }
