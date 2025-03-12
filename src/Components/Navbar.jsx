@@ -5,7 +5,7 @@ export default function Navbar() {
       <nav >
         <div class="navbarContainer p-3">
           <div className="navbarIcon">
-              <Link className="nav-links" to="#">StayFinder</Link>
+              <Link className="nav-links" to="/">StayFinder</Link>
           </div>
           <div class="navbarItems" id="navbarItems">
               <Link class="nav-links" to="/">Blog</Link>
