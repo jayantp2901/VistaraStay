@@ -55,7 +55,7 @@ export default function Blog() {
                                 <div
                                     className="card-text flex-grow-1"
                                     dangerouslySetInnerHTML={{
-                                        __html: post.content.substring(0, 100) + "...",
+                                        __html: post.content.substring(0, 200) + "...",
                                     }}
                                 />
                                 <a
