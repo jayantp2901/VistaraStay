@@ -6,7 +6,7 @@ export default function AboutUs() {
             <Banner />
 
             <section className="about-intro">
-                <h1>Welcome to StayFinder</h1>
+                <h1>Welcome to VistaraStay</h1>
                 <p>Your trusted companion in finding the perfect stay, anywhere in the world.</p>
             </section>
 
