@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
                 {/* Footer Section 1 */}
                 <div className="text-center md:text-left mb-4 md:mb-0">
-                    <h2 className="text-2xl font-bold">StayFinder</h2>
+                    <h2 className="text-2xl font-bold">VistaraStay</h2>
                     <h3 className="text-lg italic">Forget the hassle, just pack and travel..!</h3>
                     <h6 className="text-white-700 mt-1">
                         StayFinder makes finding your perfect stay simple and stress-free, wherever you go!
@@ -28,7 +28,7 @@ export default function Footer() {
                 {/* Footer Section 3 - Contact */}
                 <div className="text-center md:text-left">
                     <h6 className="text-lg font-semibold">Contact Us</h6>
-                    <h6 className="text-sm">Email: stayfinder@gmail.com</h6>
+                    <h6 className="text-sm">Email: VistaraStay@gmail.com</h6>
                     <h6 className="text-sm">Phone: 9876543210</h6>
                 </div>
             </div>

@@ -45,7 +45,7 @@ body::-webkit-scrollbar {
     padding-top: 1rem;
     border-radius: 2rem;
     color: white;
-    background-image: url('./Images/BannerBg.jpg');
+    /* background-image: url('./Images/BannerBg.jpg'); */
     background-size: cover;
     background-position: center;
 }
